@@ -9,7 +9,7 @@ import string
 #It selects a volunteer and sends that volunteer an email
 
 # Parse the volunteer.xml file containing the list of volunteers
-tree = ET.parse("/home/tjt7a/volunteerism/volunteers.xml")
+tree = ET.parse("volunteers.xml")
 root = tree.getroot()
 
 volunteer_list = []
@@ -42,11 +42,11 @@ for volunteer in root.findall('volunteer'):
 	if name == temp_list[0][0]:
 		count = str(int(volunteer.attrib['count'])+1)
 		volunteer.attrib['count'] = count
-tree.write("/home/tjt7a/volunteerism/volunteers.xml")
+tree.write("volunteers.xml")
 
 # Send the email!
-email_fp = open('/home/tjt7a/volunteerism/email.txt', 'rb')
-hplp_fp = open('/home/tjt7a/volunteerism/hplp.txt', 'rb')
+email_fp = open('email.txt', 'rb')
+hplp_fp = open('hplp.txt', 'rb')
 vol_msg = MIMEText(email_fp.read())
 
 # Replace the '#####' token with the name of the volunteer
@@ -59,7 +59,7 @@ hplp_fp.close()
 
 me = 'MCP'
 you = temp_list[0][1] 
-hplp = "hplp@collab.itc.virginia.edu"
+hplp = #insert your server email address here; call it what you'd like#  
 
 vol_msg['Subject'] = 'You are this week\'s HPLP Volunteer!'
 vol_msg['From'] = me
